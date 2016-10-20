@@ -1,0 +1,160 @@
+@charset "UTF-8";
+
+/* css样式初始化 */
+
+html, body, ul, li, ol, dl, dd, dt, p, h1, h2, h3, h4, h5, h6, form, fieldset, legend, img, a {
+    margin: 0;
+    padding: 0;
+    font-size: 12px;
+    color: #A5A5A5;
+    font-family: 宋体;
+}
+
+/*各浏览器显示不同，去掉蓝色边框*/
+fieldset, img, input, button {
+    border: none;
+    padding: 0;
+    margin: 0;
+    outline-style: none;
+}
+
+/*去掉列表小圆点*/
+ul, ol {
+    list-style: none;
+}
+
+/* 去掉外边框*/
+input, img {
+    padding: 0;
+    margin: 0;
+    border: 0 none;
+    outline-style: none;
+}
+
+/*去掉行内替换元素空白缝隙*/
+img {
+    border: 0;
+    vertical-align: middle;
+}
+
+/*防止拖动 影响布局*/
+textarea {
+    resize: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+s, i, em {
+    font-style: normal;
+    text-decoration: none;
+}
+
+/*清除浮动*/
+.clearfix:after {
+    content: "";
+    height: 0;
+    line-height: 0;
+    display: block;
+    clear: both;
+    visibility: hidden;
+}
+
+.clearfix {
+    zoom: 1;
+}
+
+.fl {
+    float: left;
+}
+
+.fr {
+    float: right;
+}
+
+/*版心*/
+.box {
+    width: 1200px;
+    margin: 0 auto;
+}
+
+.pub-color {
+    color: #B79168;
+}
+/*顾客反馈*/
+.dqq_ypds{
+    height: 175px;
+    padding-top: 40px;
+    margin-bottom: 70px;
+}
+/*第1个图片盒子*/
+.dqq_ypds .dqq_ypds_1{
+    height: 180px;
+    width: 270px;
+    /*background-color: #54ff64;*/
+    background-image: url("../images/ypds11.jpg");
+    position: relative;
+}
+.dqq_ypds_1_bk{
+    position: absolute;
+    top:20px;
+    left: 15px;
+    height: 140px;
+    width: 240px;
+    border: 3px solid #8affa3;
+    display: none;
+}
+/*第2个图片盒子*/
+.dqq_ypds .dqq_ypds_2{
+    position: relative;
+    height: 180px;
+    width: 270px;
+    background-color: #3554ff;
+    margin-left: 40px;
+    background-image: url("../images/ypds44.jpg");
+}
+.dqq_ypds_2_bk{
+    position: absolute;
+    top:20px;
+    left: 15px;
+    height: 140px;
+    width: 240px;
+    border: 3px solid #8affa3;
+    display: none;
+}
+/*第3个图片盒子*/
+.dqq_ypds .dqq_ypds_3{
+    position: relative;
+    height: 180px;
+    width: 270px;
+    background-color: #ff686d;
+    margin-left: 40px;
+    background-image: url("../images/ypds33.jpg");
+}
+.dqq_ypds_3_bk{
+    position: absolute;
+    top:20px;
+    left: 15px;
+    height: 140px;
+    width: 240px;
+    border: 3px solid #8affa3;
+    display: none;
+}
+/*第4个图片盒子*/
+.dqq_ypds .dqq_ypds_4{
+    position: relative;
+    height: 180px;
+    width: 270px;
+    background-color: #feffb7;
+    background-image: url("../images/ypds55.jpg");
+}
+.dqq_ypds_4_bk{
+    position: absolute;
+    top:20px;
+    left: 15px;
+    height: 140px;
+    width: 240px;
+    border: 3px solid #8affa3;
+    display: none;
+}

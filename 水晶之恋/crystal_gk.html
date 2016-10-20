@@ -1,0 +1,156 @@
+
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>水晶之恋</title>
+    <link rel="shortcut icon" href="favicon.ico"/>
+</head>
+
+<style>
+
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    .box {
+        border: 1px solid #ccc;
+        float: left;
+        padding: 5px;
+
+    }
+</style>
+
+<script>
+
+    window.onload = function () {
+        var content = document.getElementById("content");
+        var boxes = content.children;
+        var pageWidth = window.innerWidth;
+        var boxWidth = boxes[0].offsetWidth;
+        var column = Math.floor(pageWidth / boxWidth);
+        //console.log(colunm);
+
+        var arrHeight = [];
+
+        //封装改变第一行下面图片位置的函数
+        function waterfall(){
+            for (var i = 0; i < boxes.length; i++) {
+                if (i < column) {
+                    arrHeight[i] = boxes[i].offsetHeight;
+                } else {
+                    var minHeight = getMin(arrHeight).value;
+                    var minHeightIndex = getMin(arrHeight).index;
+                    boxes[i].style.position = "absolute";
+                    boxes[i].style.left = boxes[minHeightIndex].offsetLeft + "px";
+                    boxes[i].style.top = minHeight + "px";
+                    arrHeight[minHeightIndex] = minHeight + boxes[i].offsetHeight;
+                }
+            }
+        }
+        //刚开始调用一次
+        waterfall();
+
+        //console.log(arrHeight);
+        //console.log(minHeightIndex);
+        //console.log(minHeight);
+
+
+        //后台获取的数据
+        var json = [
+            {"src": "images/11.jpg"},
+            {"src": "images/22.jpg"},
+            {"src": "images/33.jpg"},
+            {"src": "images/44.jpg"},
+            {"src": "images/55.jpg"},
+            {"src": "images/66.jpg"},
+            {"src": "images/77.jpg"},
+            {"src": "images/88.jpg"},
+            {"src": "images/01.jpg"},
+            {"src": "images/02.jpg"},
+            {"src": "images/03.jpg"},
+            {"src": "images/04.jpg"},
+            {"src": "images/05.jpg"},
+            {"src": "images/06.jpg"},
+            {"src": "images/07.jpg"},
+            {"src": "images/08.jpg"},
+            {"src": "images/09.jpg"},
+            {"src": "images/010.jpg"},
+            {"src": "images/011.jpg"},
+            {"src": "images/012.jpg"},
+            {"src": "images/013.jpg"},
+            {"src": "images/014.jpg"},
+            {"src": "images/015.jpg"},
+            {"src": "images/016.jpg"},
+
+        ]
+        //窗体滚动时
+        window.onscroll = function () {
+            if (bottomed()) {
+                for (i = 0; i <json.length; i++) {
+                    var div=document.createElement("div");
+                    div.innerHTML='<img src="'+json[i].src+'" alt=""/>';
+                    div.className="box";
+                    content.appendChild(div);
+                }
+                //根据后台传输的数据动态加载后，再调用一次waterfall函数
+                waterfall();
+            }
+        }
+
+        //判断是否触底
+        function bottomed() {
+            //当窗体高度pageHeight +被卷去的高度scollHeight > 最后一个盒子的offsetTop时，就证明触底了
+            var pageHeight = window.innerHeight;
+            var scollHeight = window.pageYOffset;
+            var lastBoxHeight = boxes[boxes.length - 1].offsetTop;
+            if (pageHeight + scollHeight > lastBoxHeight) {
+                return true;
+            }
+        }
+    }
+
+
+    function getMin(arr) {
+        var min = {};
+        min.index = 0;
+        min.value = arr[min.index];
+        for (i = 0; i < arr.length; i++) {
+            if (min.value > arr[i]) {
+                min.value = arr[i];
+                min.index = i;
+            }
+        }
+        return min;
+    }
+
+
+</script>
+
+
+<body>
+<div class="wky_alert">
+    <!--<img src="images/wky.jpg" alt="">-->
+</div>
+<div class="content" id="content">
+    <div class="box"><a href="index.html"><img src="images/1.jpg" alt=""/></a></div>
+    <div class="box"><a href="index.html"><img src="images/2.jpg" alt=""/></a> </div>
+    <div class="box"><a href="index.html"><img src="images/3.jpg" alt=""/></a> </div>
+    <div class="box"><a href="index.html"><img src="images/4.jpg" alt=""/></a> </div>
+    <div class="box"><a href="index.html"><img src="images/5.jpg" alt=""/></a> </div>
+    <div class="box"><a href="index.html"><img src="images/6.jpg" alt=""/></a> </div>
+    <div class="box"><a href="index.html"><img src="images/7.jpg" alt=""/></a> </div>
+    <div class="box"><a href="index.html"><img src="images/01.jpg" alt=""/></a> </div>
+    <div class="box"><a href="index.html"><img src="images/02.jpg" alt=""/></a> </div>
+    <div class="box"><a href="index.html"><img src="images/03.jpg" alt=""/></a> </div>
+    <div class="box"><a href="index.html"><img src="images/04.jpg" alt=""/></a> </div>
+    <div class="box"><a href="index.html"><img src="images/05.jpg" alt=""/></a> </div>
+    <div class="box"><a href="index.html"><img src="images/06.jpg" alt=""/></a> </div>
+    <div class="box"><a href="index.html"><img src="images/07.jpg" alt=""/></a> </div>
+    <div class="box"><a href="index.html"><img src="images/08.jpg" alt=""/></a> </div>
+</div>
+
+
+</body>
+</html>

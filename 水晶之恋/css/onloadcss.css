@@ -1,0 +1,174 @@
+/*header部*/
+
+body, div, ul, li, dd, dt, ul, a, p, dl {
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+    font-family: 宋体;
+
+}
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+
+    background-color: #EEF3FA;
+}
+
+li {
+
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: #151413;
+}
+
+.clearfix:after {
+
+    content: "";
+    height: 0;
+    visibility: hidden;
+    clear: both;
+    display: block;
+}
+
+.clearfix {
+
+    zoom: 1;
+}
+
+input, img {
+    border: 0 none;
+    outline-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.swl-bar h3 {
+    font: 18px/38px "microsoft yahei";
+    margin-top: 14px;
+    color: #C67C59;
+
+}
+
+.swl-bar {
+    width: 312px;
+    height: 360px;
+    background-color: #ffffff;
+    border: 1px solid #E4E6E8;
+    position: absolute;
+    left: 130px;
+    top: 248px;
+    opacity: 0.92;
+}
+
+.swl-bar .swl-box {
+    width: 248px;
+    margin: 0 auto;
+    text-align: center;
+
+}
+
+.swl-check {
+    position: relative;
+}
+
+.swl-bar .box-tel, .box-pw {
+    border: 1px solid #E6E6E6;
+    border-radius: 4px;
+    width: 208px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    line-height: 38px;
+    /*color: #E6E6E6;*/
+    padding-left: 39px;
+}
+
+.box-wjps {
+    position: absolute;
+    bottom: -14px;
+    right: 0;
+}
+
+.box-jzps {
+    position: absolute;
+    bottom: -14px;
+    left: 17px;
+}
+
+.box-cc {
+    position: absolute;
+    bottom: -12px;
+    left: 0px;
+}
+
+.box-dl, .box-jr {
+    line-height: 38px;
+    width: 247px;
+    text-align: center;
+    border-radius: 4px;
+    margin: 5px 0px;
+    cursor: pointer;
+}
+
+.box-dl {
+    border: 1px solid #C57D5C;
+    background-color: #fff;
+    color: #C57D5C;
+}
+
+.box-jr {
+    background-color: #C57D5C;
+    color: #FFFFFF;
+}
+
+.DL-share-sh ul {
+    position: absolute;
+    top: 18px;
+    left: 72px;
+}
+
+.DL-share-sh li {
+    width: 42px;
+    height: 16px;
+    float: left;
+    cursor: pointer;
+}
+
+.swl-bar {
+
+}
+
+.swl-bgimg {
+    width: 2000px;
+    height: 680px;
+    /*background-image: url("image/login2.jpg");*/
+}
+
+.swl-bgimg .swl-banner img {
+    height: 100%;
+}
+
+.swl-banner li {
+    float: left;
+}
+
+/*.swl-banner li img{*/
+/*width: 100%;*/
+/*}*/
+.swl-banner .banner-one {
+    display: none;
+}
+
+.swl-check .box-tel {
+    background: url("../images/box-tel.png") no-repeat;
+}
+
+.swl-check .box-pw {
+    background: url("../images/box-ps.png") no-repeat;
+}

@@ -1,0 +1,148 @@
+
+
+/*初始化------------------------------------------*/
+body, h1, h2, h3, h4, h5, h6, p, div, ul, ol, dl, dd, li, dt {
+    margin: 0;
+    padding: 0;
+    font-size: 12px;
+    font-family: 宋体;
+    list-style: none;
+}
+
+ul {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: #666666;
+}
+
+i {
+    display: inline-block;
+    height: 14px;
+    width: 14px;
+    font-style: normal;
+
+}
+
+s {
+    text-decoration: none;
+}
+
+input, img {
+    font-size: 12px;
+    font-family: 宋体;
+    border: 0 none;
+    outline-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.clearfix:after {
+    content: "";
+    height: 0;
+    line-height: 0;
+    display: block;
+    clear: both;
+    visibility: hidden;
+}
+
+.clearfix {
+    zoom: 1;
+}
+
+
+/*头部开始---------------------------------------------------------*/
+.lzc-box {
+    width: 1200px;
+    /*padding: 20px 0 10px 0;*/
+    margin: 0 auto;
+}
+
+.lzc-box .l-nav {
+    padding-top: 20px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.lzc-ul {
+    margin-top: 15px;
+    padding-left: 330px;
+}
+
+.lzc-ul li {
+    float: left;
+    color: #E8E3E3;
+}
+
+.lzc-ul li a{
+    padding: 0 10px;
+    color: #B7A0A2;
+}
+.lzc-ul li a:hover{
+    color: #956e39;
+    font-size: 12px;
+    font-family: 微软雅黑;
+}
+
+/*轮播开始------------------------------------------------*/
+
+fieldset, img {
+    border: 0;
+    vertical-align: top;
+}
+
+a, input, button, select, textarea {
+    outline: none;
+}
+
+a, button {
+    cursor: pointer;
+}
+
+.wrap {
+    width: 1200px;
+    margin: 20px auto;
+}
+
+.slide {
+    height: 650px;
+    position: relative;
+}
+
+.slide li {
+    position: absolute;
+    left: 200px;
+    top: 0;
+}
+
+.slide li img {
+    width: 100%;
+}
+
+.arrow {
+    opacity: 0.6;
+    position: absolute;
+    top: 200px;
+    z-index: 1000;
+}
+.arrow .next{
+    left: 1160px;
+}
+.prev, .next {
+    width: 76px;
+    height: 112px;
+    position: absolute;
+    top: 100px;
+    margin-top: -56px;
+    background: url("../images/prev.png") no-repeat;
+    z-index: 1000;
+}
+
+.next {
+    right: 0px;
+    background-image: url("../images/next.png");
+}
+
+

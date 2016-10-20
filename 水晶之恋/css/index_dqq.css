@@ -1,0 +1,227 @@
+@charset "UTF-8";
+
+/* css样式初始化 */
+
+html, body, ul, li, ol, dl, dd, dt, p, h1, h2, h3, h4, h5, h6, form, fieldset, legend, img, a {
+    margin: 0;
+    padding: 0;
+    font-size: 12px;
+    color: #A5A5A5;
+    font-family: 宋体;
+}
+
+/*各浏览器显示不同，去掉蓝色边框*/
+fieldset, img, input, button {
+    border: none;
+    padding: 0;
+    margin: 0;
+    outline-style: none;
+}
+
+/*去掉列表小圆点*/
+ul, ol {
+    list-style: none;
+}
+
+/* 去掉外边框*/
+input, img {
+    padding: 0;
+    margin: 0;
+    border: 0 none;
+    outline-style: none;
+}
+
+/*去掉行内替换元素空白缝隙*/
+img {
+    border: 0;
+    vertical-align: middle;
+}
+
+/*防止拖动 影响布局*/
+textarea {
+    resize: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+s, i, em {
+    font-style: normal;
+    text-decoration: none;
+}
+
+/*清除浮动*/
+.clearfix:after {
+    content: "";
+    height: 0;
+    line-height: 0;
+    display: block;
+    clear: both;
+    visibility: hidden;
+}
+
+.clearfix {
+    zoom: 1;
+}
+
+.fl {
+    float: left;
+}
+
+.fr {
+    float: right;
+}
+
+/*版心*/
+.box {
+    width: 1200px;
+    margin: 0 auto;
+}
+
+.pub-color {
+    color: #B79168;
+}
+
+/*客片大赏头部开始*/
+#dqq_kpds {
+    height: 1450px;
+    width: 100%;
+}
+
+.dqq_kpds_title {
+    height: 160px;
+    /*background-color: #ffcc68;*/
+}
+
+.dqq_kpds_title .dqq_kpds_title_img {
+    margin-top: 50px;
+    margin-left: 322px;
+}
+
+/*文字链接*/
+.dqq_kpds_word {
+    margin-top: 20px;
+    margin-left: 435px;
+}
+
+.dqq_kpds_word a:hover {
+    color: #B79168;
+}
+
+.dqq_kpds_body {
+    height: 1330px;
+    background-color: #EEEEEE;
+
+}
+
+/*几个链接*/
+
+.dqq_kpds_body {
+    padding-top: 40px;
+
+}
+
+.dqq_kpds_body_nav {
+    margin-bottom: 30px;
+}
+
+/*左边的logo*/
+.dqq_kpds_body_nav_left {
+    width: 280px;
+}
+
+/*中间的链接*/
+.dqq_kpds_body_nav_middle ul li {
+    display: inline-block;
+    float: left;
+    margin-right: 40px;
+    width: 120px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    border: 1px solid #D7D7D7;
+    cursor: pointer;
+}
+
+.dqq_kpds_body_nav_middle ul li:hover {
+    background-color: white;
+}
+
+.dqq_kpds_body_nav_right ul li {
+    border: 1px solid #D7D7D7;
+    width: 120px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.dqq_kpds_body_nav_right ul li:hover {
+    background-color: white;
+}
+
+/*更多*/
+.dqq_kpds_body_nav_right a {
+    border: 1px solid #D7D7D7;
+    width: 120px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    display: inline-block;
+}
+
+.dqq_kpds_body_nav_right a:hover {
+    background-color: white;
+}
+
+/*一堆图片 */
+.dqq_kpds_body_imgs .middle_imgs {
+    float: left;
+    margin-bottom: 40px;
+    overflow: hidden;
+    height: 588px;
+
+}
+
+/*中间图片设置间距*/
+.middle_box1 {
+    margin-right: 65px;
+    margin-left: 60px;
+}
+/*图片下面的文字*/
+.dqq_kpds_body_imgs .bottom_word{
+    height: 70px;
+    background-color: #B79168;
+    position: absolute;
+}
+.dqq_kpds_body_imgs .bottom_word p,h1{
+    padding-left: 10px;
+     color:#FFFFFF;
+ }
+
+.dqq_kpds_body_imgs .bottom_word{
+    position: relative;
+}
+.dqq_kpds_body_imgs .bottom_word p{
+     font-size: 14px;
+    margin-bottom:5px;
+     padding-top: 10px;
+ }
+.dqq_kpds_body_imgs .bottom_word h1{
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+/*中间盒子的下面小盒子*/
+.middle_box1 .bottom_word{
+    /*margin-left: 10px;*/
+    width: 354px;
+}
+.dqq_kpds_body_imgs  .bottom_word  .moreimg{
+    font-weight: 700;
+    color:#FFFFFF !important;
+    position: relative;
+    left:270px;
+    bottom:30px;
+}
+

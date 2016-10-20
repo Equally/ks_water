@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>水晶之恋</title>
+    <link rel="shortcut icon" href="favicon.ico"/>
+    <link rel="stylesheet" href="css/wky_base.css">
+    <link rel="stylesheet" href="css/middle.css"/>
+    <link rel="stylesheet" href="css/index_dqq.css"/>
+    <link rel="stylesheet" href="css/sf.css"/>
+    <script src="js/jquery-1.12.4.js"></script>
+    <script type="text/javascript" src="js/sf..js"></script>
+    <script src="js/index_dqq.js"></script>
+    <script type="text/javascript" src="js/middle.js"></script>
+    <script src="js/wky_base.js"></script>
+    <base target="_blank">
+    <script>
+        window.onload = function () {
+//    1.获取变量
+//    2.根据图片创建ol中的li，小方块中的数字与i有关
+//    3.实现点击ol中的li然后按钮变色，以及选中相应的图片
+//    4.实现鼠标移入移出左右选择按钮显示与隐藏
+//    5.设置左右按钮点击事件，以及点击事件中图片与对应方块选中关系
+//    6.无缝滚动实现功能与右按钮点击事件实现效果以及方法一样，
+//      可以将右按钮实现代码进行封装
+//    7.鼠标移入box是要关闭定时器，方便用户操作
+//    8.鼠标移出开启原定时器，避免定时器累加无法关闭
+            var box=document.getElementById("wbox");
+            var screen=box.children[0];
+            var ul=screen.children[0];
+            var lisUl=ul.children;
+            var ol=screen.children[1];
+            var arr=box.children[1];
+            var arrLeft=arr.children[0];
+            var arrRight=arr.children[1];
+            //设置变量保存图片宽度
+            var imgWid=screen.offsetWidth;
+            //console.log(imgWid);
+//    设置变量pic
+            var pic=0;
+            //定义定时器变量
+            var timer=null;
+            //创建小方块数字，对应图片
+            for (var i = 0; i < lisUl.length; i++) {
+                var lis=document.createElement("li");
+                lis.innerHTML=i+1;
+                ol.appendChild(lis);
+                console.log(lis.innerHTML);
+            }
+            //第一个数字按钮点亮
+            var lisOl=ol.children;
+            lisOl[0].className="current";
+            //设置每张图片点击点亮
+            for (var i = 0; i < lisOl.length; i++) {
+                lisOl[i].index=i;
+                lisOl[i].onclick=function(){
+                    for (var i = 0; i < lisOl.length; i++) {
+                        lisOl[i].className="";
+                    }
+                    this.className="current";
+                    var target=-imgWid*this.index;
+                    animate1(ul,target);
+                    pic=this.index;
+                };
+            }
+            //无缝滚动和右按钮点击事件的实现效果一样
+            timer=setInterval(play,2000);
+
+            //封装函数
+            function play(){
+                if(pic==lisUl.length-1){
+                    pic=0;
+                    ul.style.left=0;
+                }
+                pic++;
+                var target=-pic*imgWid;
+                animate1(ul,target);
+                for (var i = 0; i < lisOl.length; i++) {
+                    lisOl[i].className="";
+                }
+                if(pic==lisUl.length-1){
+                    lisOl[0].className="current";
+                }else{
+                    lisOl[pic].className="current";
+                }
+            }
+
+            //左右按钮点击事件，设置变量pic标记
+            //右边按钮点击事件
+            arrRight.onclick=function(){
+                if(pic==lisUl.length-1){
+                    pic=0;
+                    ul.style.left=0;
+                }
+                pic++;
+                var target=-pic*imgWid;
+                animate1(ul,target);
+                for (var i = 0; i < lisOl.length; i++) {
+                    lisOl[i].className="";
+                }
+                if(pic==lisUl.length-1){
+                    lisOl[0].className="current";
+                }else{
+                    lisOl[pic].className="current";
+                }
+            };
+            //左边按钮点击事件
+            arrLeft.onclick=function(){
+                if(pic==0){
+                    pic=6;
+                    ul.style.left=-pic*imgWid+"px";
+                }
+                pic--;
+                var target=-pic*imgWid;
+                animate1(ul,target);
+                for (var i = 0; i < lisOl.length; i++) {
+                    lisOl[i].className="";
+                }
+                lisOl[pic].className="current";
+            };
+
+            //鼠标移入移出实现箭头出现与隐藏
+            box.onmouseover=function(){
+                arr.style.display="block";
+                //鼠标移入要关闭定时器，方便用户操作
+                clearInterval(timer);
+            };
+            box.onmouseout=function(){
+                arr.style.display="none";
+                //鼠标离开后设置定时器一定要和timer相同，
+                // 要不然会产生新的定时器加到之前定时器，没法清除
+                timer=setInterval(play,2000);
+            };
+
+            //克隆ul的第一个节点做伪元素插入后面，做无缝滚动
+            var firstImg=lisUl[0].cloneNode(true);
+            ul.appendChild(firstImg);
+            //封装一个函数:函数的作用就是让一个标签运动到一个位置
+            function animate1(tag,target){
+                clearInterval(tag.timer);
+                tag.timer=setInterval(function(){
+                    var leader=tag.offsetLeft;
+                    var step=(target-leader)/10;
+                    step = step>0?Math.ceil(step):Math.floor(step);
+                    leader=leader+step;
+                    tag.style.left=leader+"px";
+                    if(leader==target){
+                        clearInterval(tag.timer);
+                    }
+                },17);
+            };
+
+        };
+    </script>
+</head>
+<body>
+<!--头部定位盒子-->
+<div class="wky_box" id="wky">
+    <div class="wky_headerTop">
+        <div class="wky_l_headerTop">
+            <ul>
+                <li class="wky_li"><a href="#"><img src="images/fh-logo.png" alt=""></a></li>
+                <li><a href="#"><img src="images/fh-qq.png" alt=""></a></li>
+                <li><a href="#"><img src="images/fh-wb.png" alt=""></a></li>
+                <li><a href="#"><img src="images/fh-wx.png" alt=""></a></li>
+            </ul>
+        </div>
+        <div class="wky_r_headerTop">
+            <ul id="wky_hrul">
+                <li><a href="#">首页<span>HOME</span></a></li>
+                <li><a href="crystal_cp.html">作品<span>WORK</span></a></li>
+                <li><a href="crystal_gk.html">客片<span>GUEST</span></a></li>
+                <li><a href="#">全球旅拍<span>TRAVEL</span></a></li>
+                <li><a href="crystal_login.html">登录<span>LOGIN</span></a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!--导航部分-->
+<div class="wky_n">
+    <div class="wky_nav clearfix">
+        <ul>
+            <li><a href="crystal_cp.html">风格大赏</a></li>
+            <li><a href="crystal_gk.html">百万客片</a></li>
+            <li><a href="index.html">摄影基地</a></li>
+            <li class="wky_logo"><a href="index.html">水晶之恋</a></li>
+            <li><a href="index.html">关于品牌</a></li>
+            <li><a href="index.html">全球旅拍</a></li>
+            <li><a href="crystal_login.html">欢迎光临</a></li>
+        </ul>
+    </div>
+</div>
+<!--中间轮播部分和产品展示-->
+<div class="w">
+    <!--第一个盒子 开始-->
+    <div class="all_banner1" id="wbox">
+        <div class="wky_banner1">
+            <ul id="wky_bul">
+                <!--<li><img src="images/z4.png" alt=""></li>-->
+                <!--<li><img src="images/z4.png" alt=""></li>-->
+                <!--<li><img src="images/z4.png" alt=""></li>-->
+                <li><img src="images/wky13.jpg" alt=""></li>
+                <li><img src="images/201605121248pvq58q.jpg" alt=""></li>
+                <li><img src="images/201605211452f8selq.jpg" alt=""></li>
+                <li><img src="images/wky11.jpg" alt=""></li>
+                <li><img src="images/wky12.jpg" alt=""></li>
+            </ul>
+            <ol></ol>
+        </div>
+        <div id="wky_arr"><span id="wky_left">&lt;</span><span id="wky_right">&gt;</span></div>
+    </div>
+
+    <!--第一个盒子 结束-->
+    <div class="dqq_kpds_title">
+        <!--客片大赏文字-->
+        <img class="dqq_kpds_title_img" src="images/title-customers.png" alt="">
+        <!--客片大赏链接-->
+        <div class="dqq_kpds_word">
+            <a href=#>韩城系列</a>|
+            <a href=#>凯撒系列</a>|
+            <a href=#>丘比特系列</a>|
+            <a href=#>浪漫花海系列</a>|
+            <a href=#>创意飞行系列</a>|
+            <a href=#>全球旅拍系列</a>|
+        </div>
+    </div>
+    <!--第二个盒子 开始-->
+    <div class="zsl2 clearfix">
+        <ul>
+            <li><a href="#"><img src="imges/z8.jpg" alt=""/></a></li>
+            <li><a href="#"><img src="imges/z9.jpg" alt=""/></a></li>
+            <li><a href="#"><img src="imges/z10.jpg" alt=""/></a></li>
+            <li><a href="#"><img src="imges/z11.jpg" alt=""/></a></li>
+            <li><a href="#"><img src="imges/z12.jpg" alt=""/></a></li>
+        </ul>
+    </div>
+</div>
+<!--第二个盒子 结束-->
+<!--第三个盒子 开始-->
+<div class="zsl3">
+    <div class="zsl3-a">
+        <img src="imges/z5.png" alt=""/>
+    </div>
+    <div class="zsl3-b">
+        <img src="imges/z6.png" alt=""/>
+    </div>
+    <div class="zsl3-c">
+        <img src="imges/z7.png" alt=""/>
+    </div>
+</div>
+<!--第三个盒子 结束-->
+</div>
+<!--产品展示部分开始-->
+<div id="dqq_kpds">
+    <div class="dqq_kpds_title">
+        <!--客片大赏文字-->
+        <img class="dqq_kpds_title_img" src="images/title-customers.png" alt="">
+        <!--客片大赏链接-->
+        <div class="dqq_kpds_word">
+            <a href=#>韩城系列</a>|
+            <a href=#>凯撒系列</a>|
+            <a href=#>丘比特系列</a>|
+            <a href=#>浪漫花海系列</a>|
+            <a href=#>创意飞行系列</a>|
+            <a href=#>全球旅拍系列</a>|
+        </div>
+    </div>
+    <div class="dqq_kpds_body clearfix">
+        <div class="dqq_kpds_body_nav box clearfix">
+            <!--左边logo-->
+            <div class="dqq_kpds_body_nav_left fl">
+                <img src="images/category.png" alt="">
+            </div>
+            <!--中间链接-->
+            <div class="dqq_kpds_body_nav_middle fl">
+                <ul>
+                    <li>女王系列</li>
+                    <li>飞行馆</li>
+                    <li>梦幻水下</li>
+                    <li>环球婚纱</li>
+                </ul>
+            </div>
+            <!--右边更多-->
+            <div class="dqq_kpds_body_nav_right fr">
+                <a href="crystal_gk.html">更多</a>
+
+            </div>
+        </div>
+
+        <!--中间图片-->
+        <div class="dqq_kpds_body_imgs box">
+
+            <div class="middle_imgs">
+                <a href="#"><img src="images/sm_201607041542kju8es.jpg" alt=""></a>
+
+                <!--下面小盒子。动画用-->
+                <div class="bottom_word">
+                    <p>❤❤❤</p>
+                    <h1>漫步时光</h1>
+                    <a class="moreimg" href="crystal_gk.html">>MORE FHOTO</a>
+                </div>
+            </div>
+            <!--第二个图片-->
+            <div class="middle_imgs middle_box1">
+                <div class="bottom_word">
+
+                    <p>阳光明媚 郁郁葱葱 情侣共度美好时光❤</p>
+                    <h1>唯爱圣殿</h1>
+                    <img src="images/sm_20160705091699mf1d.jpg" alt="">
+                    <!--<a href="crystal_gk.html">>MORE FHOTO</a>-->
+                </div>
+                <li><a href="#"><img class="box_img" src="images/sm_20160705091699mf1d.jpg" alt=""></a>
+
+            </div>
+
+
+            <div class="middle_imgs"><a href="#"><img src="images/sm_201607041705gbolmc.jpg" alt=""></a>
+                <div class="bottom_word">
+                    <p>❤❤❤</p>
+                    <h1>爱的水晶</h1>
+                    <a class="moreimg" href="crystal_gk.html">>MORE FHOTO</a>
+                </div>
+            </div>
+
+            <div class="middle_imgs"><a href="#"><img src="images/354588_201607050937o6vjp7.jpg" alt=""></a>
+                <div class="bottom_word">
+                    <p>❤❤❤</p>
+                    <h1>爱的回忆</h1>
+                    <a class="moreimg" href="crystal_gk.html">>MORE FHOTO</a>
+                </div>
+            </div>
+
+            <!--第二行第二个图片-->
+            <div class="middle_imgs middle_box1">
+                <div class="bottom_word">
+                    <p>清澈眼眸 笑颜绽放 用心谱写浪漫乐章❤</p>
+                    <h1>唯美印象</h1>
+                    <img src="images/354588_201607050938mqx8xs.jpg" alt="">
+                    <!--<a href="crystal_gk.html">>MORE FHOTO</a>-->
+                </div>
+                <li><a href="#"><img src="images/354588_201607050938mqx8xs.jpg" alt=""></a>
+            </div>
+            <div class="middle_imgs"><a href="#"><img src="images/354588_2016070509362cfdl2.jpg" alt=""></a>
+                <div class="bottom_word">
+                    <p>❤❤❤</p>
+                    <h1>雅致格调</h1>
+                    <a class="moreimg" href="crystal_gk.html">>MORE FHOTO</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<embed src="不得不爱.mp3" width='0' height='0' autostart='true' loop="true"/>
+<!--团队介绍-->
+<div class="dqq_kpds_title">
+    <!--客片大赏文字-->
+    <img class="dqq_kpds_title_img" src="images/title-customers.png" alt="">
+    <!--客片大赏链接-->
+    <div class="dqq_kpds_word">
+        <a href=#>韩城系列</a>|
+        <a href=#>凯撒系列</a>|
+        <a href=#>丘比特系列</a>|
+        <a href=#>浪漫花海系列</a>|
+        <a href=#>创意飞行系列</a>|
+        <a href=#>全球旅拍系列</a>|
+    </div>
+</div>
+
+<div class="llbox">
+    <div class="liu-box">
+        <ul class="sf-ul">
+            <li class="sf-one">
+                <div class="sf-box ">
+                    <div class="sf-1">
+                        <div class="sf-1l">
+                            <img src="sf-images/新建文件夹/dqq_gkfk_2.jpg" height="300px" alt=""/>
+                        </div>
+                        <div class="sf-1r">
+                            <ul>
+                                <li class="liu1">ID：做最美的自己</li>
+                                <li class="liu2">生活还在继续，何不让其更美好。。。燥起来吧！！！！！</li>
+                                <li class="liu2">生活还在继续，何不让其更美好。。。燥起来吧！！！！！</li>
+                                <li class="liu2">生活还在继续，何不让其更美好。。。燥起来吧！！！！！</li>
+                                <li class="liu3"><a href="#">查看更多评论</a></li>
+                            </ul>
+                        </div>
+
+                    </div>
+
+                </div>
+            </li>
+            <li class="sf-li">
+                <div class="sf-box ">
+                    <div class="sf-1">
+                        <div class="sf-1l">
+                            <img src="sf-images/新建文件夹/dqq_gkfk_3.jpg" height="300px" alt=""/>
+                        </div>
+                        <div class="sf-1r">
+                            <ul>
+                                <li class="liu1">ID：做最美的自己</li>
+                                <li class="liu2">生活还在继续，何不让其更美好。。。燥起来吧！！！！！</li>
+                                <li class="liu2">生活还在继续，何不让其更美好。。。燥起来吧！！！！！</li>
+                                <li class="liu2">生活还在继续，何不让其更美好。。。燥起来吧！！！！！</li>
+                                <li class="liu3"><a href="#">查看更多评论</a></li>
+                            </ul>
+                        </div>
+
+                    </div>
+
+                </div>
+            </li>
+            <li class="sf-li">
+                <div class="sf-box ">
+                    <div class="sf-1">
+                        <div class="sf-1l">
+                            <img src="sf-images/新建文件夹/dqq_gkfk_4.jpg" height="300px" alt=""/>
+                        </div>
+                        <div class="sf-1r">
+                            <ul>
+                                <li class="liu1">ID：做最美的自己</li>
+                                <li class="liu2">生活还在继续，何不让其更美好。。。燥起来吧！！！！！</li>
+                                <li class="liu2">生活还在继续，何不让其更美好。。。燥起来吧！！！！！</li>
+                                <li class="liu2">生活还在继续，何不让其更美好。。。燥起来吧！！！！！</li>
+                                <li class="liu3"><a href="#">查看更多评论</a></li>
+                            </ul>
+                        </div>
+
+                    </div>
+
+                </div>
+            </li>
+            <li class="sf-li">
+                <div class="sf-box ">
+                    <div class="sf-1">
+                        <div class="sf-1l">
+                            <img src="sf-images/新建文件夹/dqq_gkfk_5.jpg" height="300px" alt=""/>
+                        </div>
+                        <div class="sf-1r">
+                            <ul>
+                                <li class="liu1">ID：做最美的自己</li>
+                                <li class="liu2">生活还在继续，何不让其更美好。。。燥起来吧！！！！！</li>
+                                <li class="liu2">生活还在继续，何不让其更美好。。。燥起来吧！！！！！</li>
+                                <li class="liu2">生活还在继续，何不让其更美好。。。燥起来吧！！！！！</li>
+                                <li class="liu3"><a href="#">查看更多评论</a></li>
+                            </ul>
+                        </div>
+
+                    </div>
+
+                </div>
+            </li>
+            <li class="sf-li">
+                <div class="sf-box ">
+                    <div class="sf-1">
+                        <div class="sf-1l">
+                            <img src="sf-images/新建文件夹/dqq_gkfk_6.jpg" height="300px" alt=""/>
+                        </div>
+                        <div class="sf-1r">
+                            <ul>
+                                <li class="liu1">ID：做最美的自己</li>
+                                <li class="liu2">生活还在继续，何不让其更美好。。。燥起来吧！！！！！</li>
+                                <li class="liu2">生活还在继续，何不让其更美好。。。燥起来吧！！！！！</li>
+                                <li class="liu2">生活还在继续，何不让其更美好。。。燥起来吧！！！！！</li>
+                                <li class="liu3"><a href="#">查看更多评论</a></li>
+                            </ul>
+                        </div>
+
+                    </div>
+
+                </div>
+            </li>
+        </ul>
+
+    </div>
+</div>
+
+<!--尾部-->
+<!--第四个盒子 开始-->
+<div class="zsl4 clearfix">
+    <div class="zsl4-a">
+        <img src="imges/z13.png" alt=""/>
+    </div>
+    <div class="zsl4-b clearfix">
+        <ul >
+            <li><a href="#" class="zsl4-c"></a></li>
+            <li><a href="#" class="zsl4-d"></a></li>
+            <li><a href="#" class="zsl4-e"></a></li>
+            <li><a href="#" class="zsl4-f"><img src="imges/z15.png" alt=""/></a></li>
+            <li><a href="#" class="zsl4-g"><img src="imges/z16.png" alt=""/></a></li>
+            <li><a href="#" class="zsl4-h"><img src="imges/z17.jpg" alt=""/></a></li>
+            <li><a href="#" class="zsl4-i"><img src="imges/z18.jpg" alt=""/></a></li>
+        </ul>
+    </div>
+</div>
+<!--第四个盒子 结束-->
+
+<!--第五个盒子 开始-->
+<div class="zsl5 clearfix">
+
+    <img src="imges/z19.png" alt=""/>
+
+</div>
+<!--<第五个盒子 结束-->
+
+<!--第六个盒子 开始-->
+<div class="zsl6">
+    <img src="imges/z20.png" alt=""/>
+</div>
+<!--第六个盒子 结束-->
+<script>
+
+    //    //盒子二特效开始
+    //
+    heziR()
+    //
+    //    //盒子一特效开始
+    //
+//    heziY()
+
+
+</script>
+</body>
+</html>
